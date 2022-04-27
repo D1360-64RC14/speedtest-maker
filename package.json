@@ -1,0 +1,20 @@
+{
+  "name": "speedtest-maker",
+  "description": "A tool made in Typescript to run network tests automatically and save then to a database (SQLite)",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "repository": "https://github.com/D1360-64RC14/speedtest-maker",
+  "author": "Diego Garcia",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.6",
+    "typeorm": "^0.3.6",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.29",
+    "@types/sqlite3": "^3.1.8",
+    "ts-node": "^10.7.0"
+  }
+}
