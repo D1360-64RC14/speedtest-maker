@@ -1,14 +1,19 @@
-import { spawn } from "node:child_process";
-import { SPEEDTEST_BIN_FILE } from "./config/environment";
+import "./setup";
 
-import "./config/typeorm";
+import { Speedtest } from "./speedtest";
+import { DataLog } from "./database/entities/DataLog";
+import { AppDataSource } from "./config/typeorm";
 
-const proc = spawn(SPEEDTEST_BIN_FILE, [
-    "--format=json",
-    "--unit=bps",
-    "--accept-license",
-    "--accept-gdpr",
-]);
+const DataLogRepo = AppDataSource.getRepository(DataLog);
 
-proc.stdout.on("data", (msg) => console.log(msg.toString()));
-proc.stderr.on("data", (msg) => console.error(msg.toString()));
+Speedtest.makeTest()
+    .then(async ({ download, upload, timestamp, server, ping }) => {
+        await DataLogRepo.insert({
+            download_speed: download.bandwidth,
+            upload_speed: upload.bandwidth,
+            timestamp: new Date(timestamp),
+            server_name: `${server.name}, ${server.location}`,
+            latency: ping.latency,
+        });
+    })
+    .catch(console.error);
