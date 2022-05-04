@@ -1,6 +1,6 @@
 {
   "name": "speedtest-maker",
-  "description": "A tool made in Typescript to run network tests automatically and save then to a database (SQLite)",
+  "description": "A tool made in Typescript to run network tests automatically and save them to an SQLite database.",
   "version": "1.0.0",
   "main": "build/index.js",
   "repository": "https://github.com/D1360-64RC14/speedtest-maker",
@@ -19,7 +19,8 @@
   },
   "scripts": {
     "dev:run": "ts-node src/index.ts",
-    "prod:build": "node_modules/.bin/tsc && speedtest_download.sh",
-    "prod:run": "node build/index.js"
+    "prod:build": "./node_modules/.bin/tsc",
+    "prod:run": "node build/index.js",
+    "prod:compose": "docker-compose up"
   }
 }

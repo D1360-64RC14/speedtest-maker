@@ -1,0 +1,8 @@
+node_modules/
+.gitignore
+.prettierrc
+database.sqlite
+prod.compose.yml
+speedtest
+yarn-error.log
+build/

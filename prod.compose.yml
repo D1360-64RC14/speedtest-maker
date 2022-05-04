@@ -1,0 +1,22 @@
+
+services:
+    speedtest-maker:
+        container_name: speedtest_maker
+        build:
+            context: .
+            dockerfile: prod.Dockerfile
+
+        environment:
+            SQLITE_DATABASE_PATH: database/database.sqlite
+            SPEEDTEST_BIN_FILEPATH: speedtest
+
+        volumes:
+            # - type: volume
+            #   source: db-data
+            #   target: /usr/local/src/speedtest_maker/database
+            - type: bind
+              source: /var/db/speedtest_maker
+              target: /usr/local/src/speedtest_maker/database
+
+volumes:
+    db-data:
